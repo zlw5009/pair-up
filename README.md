@@ -14,6 +14,3 @@
 ## Levels of difficulty
 - The challenges will range from easy to advanced. Some projects will focus on CLI programs while others will be full stack web applications. We intend to provide two complex challenges per month; one for beginner/novice students who are only familiar with the CLI and another project that focuses on web application challenges. 
 # pair-up
-
-Test Change -- Tommy
-Testing Git `fetch
