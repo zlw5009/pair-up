@@ -13,4 +13,15 @@ get '/users/1/dashboard' do
   erb :"users/dashboard", layout: :"layouts/layout"
 end
 
-post '/users/create' do; end
+get '/users/create' do
+  erb :"users/signup" layout: :"layouts/layout"
+end
+
+post '/users/create' do
+  # this for a new user sign up? 
+  redirect '/users/register'
+end
+
+ do
+
+end
