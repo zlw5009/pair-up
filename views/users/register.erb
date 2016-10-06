@@ -1,3 +1,22 @@
 <!-- Render form for creating a new user -->
-<p>Once the form is submitted, redirect in the post action to the dashboard.</p>
-<a href="/users/1/dashboard">Dashboard</a>
+
+<form class="signup" action="/users/registration" method="post">
+  <h2>Sign Up</h2>
+  <fieldset>
+    <ul>
+      <li>
+        <label for="email">Email Address</label>
+        <input type="email" id="email" />
+      </li>
+      <li>
+        <label for="password">Password</label>
+        <input type="text" id="password" />
+      </li>
+      <li>
+        <label for="confirm_password">Confirm Password</label>
+        <input type="text" id="confirm_password" />
+      </li>
+      <button type="submit">Log In</button>
+    </ul>
+  </fieldset>
+</form>
