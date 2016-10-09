@@ -18,16 +18,14 @@ SET search_path = public, pg_catalog;
 ALTER TABLE ONLY public.teams DROP CONSTRAINT teams_team_leader_fkey;
 ALTER TABLE ONLY public.teams DROP CONSTRAINT teams_challenge_id_fkey;
 ALTER TABLE ONLY public.skillset DROP CONSTRAINT skillset_user_id_fkey;
-ALTER TABLE ONLY public.leader_boards DROP CONSTRAINT leader_board_challenge_id_fkey;
+ALTER TABLE ONLY public.challenges DROP CONSTRAINT challenges_winner_fkey;
 ALTER TABLE ONLY public.users DROP CONSTRAINT users_pkey;
 ALTER TABLE ONLY public.teams DROP CONSTRAINT teams_pkey;
 ALTER TABLE ONLY public.skillset DROP CONSTRAINT skillset_pkey;
-ALTER TABLE ONLY public.leader_boards DROP CONSTRAINT leader_boards_pkey;
 ALTER TABLE ONLY public.challenges DROP CONSTRAINT challenges_pkey;
 ALTER TABLE public.users ALTER COLUMN id DROP DEFAULT;
 ALTER TABLE public.teams ALTER COLUMN id DROP DEFAULT;
 ALTER TABLE public.skillset ALTER COLUMN id DROP DEFAULT;
-ALTER TABLE public.leader_boards ALTER COLUMN id DROP DEFAULT;
 ALTER TABLE public.challenges ALTER COLUMN id DROP DEFAULT;
 DROP SEQUENCE public.users_id_seq;
 DROP TABLE public.users;
@@ -35,8 +33,6 @@ DROP SEQUENCE public.teams_id_seq;
 DROP TABLE public.teams;
 DROP SEQUENCE public.skillset_id_seq;
 DROP TABLE public.skillset;
-DROP SEQUENCE public.leader_board_id_seq;
-DROP TABLE public.leader_boards;
 DROP SEQUENCE public.challenges_id_seq;
 DROP TABLE public.challenges;
 DROP EXTENSION plpgsql;
@@ -89,7 +85,8 @@ CREATE TABLE challenges (
     stub_link text,
     overview_link text,
     start_date timestamp without time zone,
-    end_date timestamp without time zone
+    end_date timestamp without time zone,
+    winner integer
 );
 
 
@@ -114,40 +111,6 @@ ALTER TABLE challenges_id_seq OWNER TO "Zach";
 --
 
 ALTER SEQUENCE challenges_id_seq OWNED BY challenges.id;
-
-
---
--- Name: leader_boards; Type: TABLE; Schema: public; Owner: Zach
---
-
-CREATE TABLE leader_boards (
-    id integer NOT NULL,
-    rank integer,
-    challenge_id integer NOT NULL
-);
-
-
-ALTER TABLE leader_boards OWNER TO "Zach";
-
---
--- Name: leader_board_id_seq; Type: SEQUENCE; Schema: public; Owner: Zach
---
-
-CREATE SEQUENCE leader_board_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE leader_board_id_seq OWNER TO "Zach";
-
---
--- Name: leader_board_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Zach
---
-
-ALTER SEQUENCE leader_board_id_seq OWNED BY leader_boards.id;
 
 
 --
@@ -202,7 +165,8 @@ CREATE TABLE teams (
     name text NOT NULL,
     team_leader integer,
     submission_link text,
-    challenge_id integer
+    challenge_id integer,
+    rank integer
 );
 
 
@@ -277,13 +241,6 @@ ALTER TABLE ONLY challenges ALTER COLUMN id SET DEFAULT nextval('challenges_id_s
 -- Name: id; Type: DEFAULT; Schema: public; Owner: Zach
 --
 
-ALTER TABLE ONLY leader_boards ALTER COLUMN id SET DEFAULT nextval('leader_board_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: Zach
---
-
 ALTER TABLE ONLY skillset ALTER COLUMN id SET DEFAULT nextval('skillset_id_seq'::regclass);
 
 
@@ -305,8 +262,8 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 -- Data for Name: challenges; Type: TABLE DATA; Schema: public; Owner: Zach
 --
 
-INSERT INTO challenges VALUES (1, 'this challenge', 2, 'some description', NULL, NULL, NULL, NULL);
-INSERT INTO challenges VALUES (2, 'this challenge', 2, 'some description', NULL, NULL, NULL, NULL);
+INSERT INTO challenges VALUES (1, 'this challenge', 2, 'some description', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO challenges VALUES (2, 'this challenge', 2, 'some description', NULL, NULL, NULL, NULL, NULL);
 
 
 --
@@ -314,19 +271,6 @@ INSERT INTO challenges VALUES (2, 'this challenge', 2, 'some description', NULL,
 --
 
 SELECT pg_catalog.setval('challenges_id_seq', 2, true);
-
-
---
--- Name: leader_board_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Zach
---
-
-SELECT pg_catalog.setval('leader_board_id_seq', 1, false);
-
-
---
--- Data for Name: leader_boards; Type: TABLE DATA; Schema: public; Owner: Zach
---
-
 
 
 --
@@ -379,14 +323,6 @@ ALTER TABLE ONLY challenges
 
 
 --
--- Name: leader_boards_pkey; Type: CONSTRAINT; Schema: public; Owner: Zach
---
-
-ALTER TABLE ONLY leader_boards
-    ADD CONSTRAINT leader_boards_pkey PRIMARY KEY (id);
-
-
---
 -- Name: skillset_pkey; Type: CONSTRAINT; Schema: public; Owner: Zach
 --
 
@@ -411,11 +347,11 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: leader_board_challenge_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Zach
+-- Name: challenges_winner_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Zach
 --
 
-ALTER TABLE ONLY leader_boards
-    ADD CONSTRAINT leader_board_challenge_id_fkey FOREIGN KEY (challenge_id) REFERENCES challenges(id);
+ALTER TABLE ONLY challenges
+    ADD CONSTRAINT challenges_winner_fkey FOREIGN KEY (winner) REFERENCES teams(id);
 
 
 --
