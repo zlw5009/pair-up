@@ -1,0 +1,19 @@
+source "https://rubygems.org"
+
+ruby "2.3.1"
+
+group :production do 
+  gem "pg"
+  gem "puma"
+  gem 'dm-postgres-adapter'
+end
+
+group :development do
+  gem 'dm-sqlite-adapter'
+end
+
+gem "sinatra", "~>1.4.6"
+gem "sinatra-contrib"
+gem "erubis"
+# gem "data_mapper" # General purpose ORM
+gem "bcrypt"
