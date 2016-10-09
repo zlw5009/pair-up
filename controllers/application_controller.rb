@@ -2,3 +2,4 @@
 get "/" do 
   erb :"sessions/splash", layout: :"layouts/layout"
 end
+

@@ -2,3 +2,47 @@
 <a href="/projects/upcoming">Upcoming</a>
 <a href="/projects/current">Current</a>
 <a href="/projects/index">Archives</a>
+
+<%= erb :"layouts/_content_title", :locals => {title: "Dashboard"} %>
+
+<div style="background: grey;">
+  <p>
+  Meta-Info: Only Exists if enrolled in a project. This is something we will need to mockup and design more.
+
+  Will have a different state for:
+    <ul>
+      <li>Not Enrolled AND enrollment open</li>
+      <li>Not Enrolled AND enrollment closed</li>
+      <li>Enrolled</li>
+      <li>Enrolled and project submission</li>
+    </ul>
+  </p>
+</div>
+
+<div style="background: grey;"> Not Enrolled AND enrollment open</div>
+<h2>Want to Learn Teamwork?</h2>
+<p>X amount of days remaining to sign up for CURRENT PROJECT! Practice THE most important soft skill: collaborating with other programmers. <a href="">Enroll now!</a></p>
+
+<div style="background: grey;"> Not Enrolled AND enrollment closed. Maybe we could have a commit leaderboard to show progress and spur motivation during development. Could just display lines of code and # of commits. Could have a special badge for the team with the first commit.</div>
+<h2>Take a Look Around</h2>
+<p>You can checkout past projects or view the <a href="">commit leaderboards</a></p>
+
+<div style="background: grey;"> Grading Period, how should voting work? Maybe each player has 2 votes and they can't vote on their own.</div>
+<h2>Enrolled Project Name</h2>
+Your <a href="">team</a> is rank X. Don't forget to vote on your favorite projects!
+
+<h2>Past Projects</h2>
+<table>
+  <tr>
+    <th>Project</th>
+    <th>Team Members</th>
+    <th>Status</th>
+    <th>Rank</th>
+  </tr>
+  <tr>
+    <td>1 Project Name</td>
+    <td>Jack, Jill</td>
+    <td>Complete</td>
+    <td>3</td>
+  </tr>
+</table>
