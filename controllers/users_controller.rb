@@ -7,6 +7,15 @@ helpers do
   def passwords_match?(password, confirm)
     return password == confirm
   end
+
+  def validate_password?(password, confirm)
+    # pw criteria - 1 alpha char, 1 digit, 8-24
+    if (passwords_match?(password, confirm))
+      return password.match(/^(?=.*[a-z])(?=.*\d).{8,24}$/)
+    else
+      return false
+    end
+  end
 end
 
 # New user form
@@ -21,7 +30,7 @@ post '/users/signup' do
   password = params[:password]
   confirm = params[:confirm_password]
 
-  if (passwords_match?(password, confirm))
+  if (validate_password?(password, confirm))
     @storage.new_user(name, email, password)
     redirect '/users/register'
   else
