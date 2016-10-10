@@ -1,182 +1,52 @@
 <!-- Render form for creating a new user -->
 
-<form class="registration" action="/users/:id/register" method="post">
+<form class="registration" action="/users/<%= @user_id %>/register" method="post">
   <h2>Experience</h2>
+  <p>Enter your experience level (0-3) based on the following criteria:
+    0 = No Experience, 1 = Beginner, 2 = Intermediate, 3 = Advance</p>
   <fieldset>
-    <h3>Ruby:</h3>
     <ul>
       <li>
-        <label>
-          <input type="checkbox" name="novice" value="novice" />
-          Novice
-        </label>
+        <label for="ruby">Ruby</label>
+        <input type="text" name="ruby" id="ruby" />
       </li>
       <li>
-        <label>
-          <input type="checkbox" name="intermediate" value="intermediate" />
-          Intermediate
-        </label>
+        <label for="sinatra">Sinatra</label>
+        <input type="text" name="sinatra" id="sinatra" />
       </li>
       <li>
-        <label>
-          <input type="checkbox" name="advanced" value="advanced" />
-          Advanced
-        </label>
+        <label for="rails">Rails</label>
+        <input type="text" name="rails" id="rails" />
+      </li>
+      <li>
+        <label for="sql">SQL</label>
+        <input type="text" name="sql" id="sql" />
+      </li>
+      <li>
+        <label for="javascript">JavaScript</label>
+        <input type="text" name="javascript" id="javascript" />
+      </li>
+      <li>
+        <label for="jquery">jQuery</label>
+        <input type="text" name="jquery" id="jquery" />
+      </li>
+      <li>
+        <label for="html">HTML</label>
+        <input type="text" name="html" id="html" />
+      </li>
+      <li>
+        <label for="css">CSS</label>
+        <input type="text" name="css" id="css" />
+      </li>
+      <li>
+        <label for="github">Github</label>
+        <input type="text" name="github" id="github" />
+      </li>
+      <li>
+        <label for="heroku">Heroku</label>
+        <input type="text" name="heroku" id="heroku" />
       </li>
     </ul>
-
-    <h3>Sinatra:</h3>
-    <ul>
-      <li>
-        <label>
-          <input type="checkbox" name="novice" value="novice" />
-          Novice
-        </label>
-      </li>
-      <li>
-        <label>
-          <input type="checkbox" name="intermediate" value="intermediate" />
-          Intermediate
-        </label>
-      </li>
-      <li>
-        <label>
-          <input type="checkbox" name="advanced" value="advanced" />
-          Advanced
-        </label>
-      </li>
-    </ul>
-
-    <h3>Rails:</h3>
-    <ul>
-      <li>
-        <label>
-          <input type="checkbox" name="novice" value="novice" />
-          Novice
-        </label>
-      </li>
-      <li>
-        <label>
-          <input type="checkbox" name="intermediate" value="intermediate" />
-          Intermediate
-        </label>
-      </li>
-      <li>
-        <label>
-          <input type="checkbox" name="advanced" value="advanced" />
-          Advanced
-        </label>
-      </li>
-    </ul>
-
-      <h3>SQL:</h3>
-      <ul>
-        <li>
-          <label>
-            <input type="checkbox" name="novice" value="novice" />
-            Novice
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" name="intermediate" value="intermediate" />
-            Intermediate
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" name="advanced" value="advanced" />
-            Advanced
-          </label>
-        </li>
-      </ul>
-
-      <h3>JavaScript:</h3>
-      <ul>
-        <li>
-          <label>
-            <input type="checkbox" name="novice" value="novice" />
-            Novice
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" name="intermediate" value="intermediate" />
-            Intermediate
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" name="advanced" value="advanced" />
-            Advanced
-          </label>
-        </li>
-      </ul>
-
-      <h3>jQuery:</h3>
-      <ul>
-        <li>
-          <label>
-            <input type="checkbox" name="novice" value="novice" />
-            Novice
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" name="intermediate" value="intermediate" />
-            Intermediate
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" name="advanced" value="advanced" />
-            Advanced
-          </label>
-        </li>
-      </ul>
-
-      <h3>HTML:</h3>
-      <ul>
-        <li>
-          <label>
-            <input type="checkbox" name="novice" value="novice" />
-            Novice
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" name="intermediate" value="intermediate" />
-            Intermediate
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" name="advanced" value="advanced" />
-            Advanced
-          </label>
-        </li>
-      </ul>
-
-      <h3>CSS:</h3>
-      <ul>
-        <li>
-          <label>
-            <input type="checkbox" name="novice" value="novice" />
-            Novice
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" name="intermediate" value="intermediate" />
-            Intermediate
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" name="advanced" value="advanced" />
-            Advanced
-          </label>
-        </li>
-      </ul>
+    <button type="submit">Continue</button>
   </fieldset>
 </form>
